@@ -1,0 +1,1 @@
+export const endpoint = 'https://api.themoviedb.org/3/movie/top_rated?api_key=f3afe7eac782f9fdc4afe8c90ea75383'
