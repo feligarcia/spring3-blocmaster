@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+
 :root{
   font-family: 'Montserrat', sans-serif;
   --black-color: #000000;
@@ -32,3 +33,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.modal{
+  background-color: initial;
+}
+.modal-dialog {
+  background-color: transparent !important;
+  /* width: 100vw !important; */
+  margin: 0 auto !important;
+
+}
+.modal-content{
+  display: flex !important;
+  background-color: transparent !important;
+  flex-direction: row-reverse !important;
+  margin: 15% 1% !important;
+  border: none !important;
+}
+.fade{
+  background-color: #0f0e17d0 !important;
+}
+.btn-close{
+  align-self: flex-end;
+  filter: invert(100%);
+}
+

@@ -31,7 +31,7 @@ const getImg = (path) =>{
 <DivMovies>
     {
         movie?.map(movie =>(
-            <DivCardMovie key={movie.id} >
+            <DivCardMovie key={movie.id} onClick={()=>movie={movie}}>
                
                 <RatingBox><StartImg /><Hrating>{movie.vote_average}</Hrating></RatingBox>
                 <ImgCard src={getImg(movie.poster_path)} />

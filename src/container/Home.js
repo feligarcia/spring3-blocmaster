@@ -6,6 +6,7 @@ import PlayLogo from '../data/images/play.png'
 import PlusLogo from '../data/images/plus.png'
 import CoverPrueba from '../data/images/covers.png'
 import {Link, Outlet, useNavigate} from 'react-router-dom'
+import { ModalMovie } from '../components/ModalMovie';
 
 
 const LayaoutHome = styled.div`
@@ -29,7 +30,7 @@ height:84px;
 width:fit-content;
 background-color: inherit;
 `
-const LinkTitle = styled.h3`
+const LinkTitle = styled.h5`
 background-color:inherit;
 &:hover{
     color:var(--primary-color);
@@ -60,8 +61,9 @@ border-style: none;
 border-radius: 8px 0px 0px 8px;
 border: 1px solid #FED941;
 font-size: 1.1rem;
-}
+
 `
+
 const DivLogoCont = styled.div`
 background-color:var(--primary-color);
 
@@ -75,7 +77,7 @@ height:inherit;
 object-fit:cover;
 max-width: 100%;
 max-height: 100%;
-}
+
 `
 
 const SliderMovies = styled.div`
@@ -91,7 +93,7 @@ position:relative;
 /* object-fit: cover; */
 border-radius: 8px;
 `
-const DivBtn = styled.div`
+export const DivBtn = styled.div`
 display:flex;
 flex-direction:row;
 flex-wrap: wrap;
@@ -107,7 +109,7 @@ height:15%;
 background-color:initial;
 `
 
-const BtnViewNow = styled.button`
+export const BtnViewNow = styled.button`
 display: flex;
 align-items:center;
 justify-content: space-evenly;
@@ -126,7 +128,7 @@ line-height: 28px;
     background-color:var(--background-principal);
 }
 `
-const BtnViewLater = styled.button`
+export const BtnViewLater = styled.button`
 display: flex;
 align-items:center;
 justify-content: space-evenly;
@@ -148,14 +150,14 @@ line-height: 28px;
 const B = styled.b`
 background-color: inherit;
 `
-const BtnViewLogo = styled.img`
+export const BtnViewLogo = styled.img`
 /* margin: 0 auto; */
 background-color: inherit;
 height:inherit;
 object-fit:cover;
 max-width: 50%;
 max-height: 50%;
-}
+
 `
 
 
@@ -204,6 +206,7 @@ const  Home =() => {
       <MoviesSection>
         <Outlet />
       </MoviesSection>
+      <ModalMovie />
     </LayaoutHome>
   );
 }
