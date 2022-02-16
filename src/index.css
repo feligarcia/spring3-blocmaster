@@ -14,7 +14,7 @@
   background-color: var(--background-principal);
   
 }
-h1,h2,h3,h4,h5,h6,p {
+h1,h2,h3,h4,h5,h6,p, label {
   color: var(--white-color);
   background-color: inherit;
 }
@@ -55,5 +55,12 @@ code {
 .btn-close{
   align-self: flex-end;
   filter: invert(100%);
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon{
+  background-color: initial;
+}
+.carousel-indicators{
+  background-color: initial;
 }
 

@@ -2,11 +2,10 @@ import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import styled from "styled-components";
 import {
-  DivBtn,
   BtnViewNow,
   BtnViewLater,
   BtnViewLogo,
-} from "../container/Home";
+} from "../styleds/BtnView";
 import PlayLogo from "../data/images/play.png";
 import PlusLogo from "../data/images/plus.png";
 import ImgPrueba from "../data/images/infamous.png";
@@ -45,7 +44,7 @@ export const ModalMovie = () => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+        Lanzar modal desde modal
       </Button>
 
       <Modal
@@ -86,12 +85,7 @@ export const ModalMovie = () => {
         <DivImg>
           <ImgDes src={ImgPrueba} />
         </DivImg>
-        {/* <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-           
-          </Modal.Footer> */}
+        
       </Modal>
     </>
   );
