@@ -17,7 +17,7 @@ const DivSlider = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
-  
+
   overflow-x: hidden; //arreglar para que se adapte al objet fit de la img
 `;
 
@@ -55,9 +55,8 @@ const SliderMovies = () => {
             setTrailer({ id: e.id, url: v.key });
             // console.log(trailer)
           })
-          
       );
-      console.log(t)
+      console.log(t);
     });
   };
   useEffect(() => {
@@ -98,59 +97,55 @@ const SliderMovies = () => {
             </DivSlider>
           </Carousel.Item>;
         })} */}
-
-          
-          <Carousel.Item>
-            <DivSlider>
-              <VideoYT
-                // width="720"
-                // height="315"
-                src='https://www.youtube.com/embed/pBvH8hvnJPk?controls=0'
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></VideoYT>
-              <DivBtn>
-                <BtnViewNow>
-                  <BtnViewLogo src={PlayLogo} />
-                  VER AHORA
-                </BtnViewNow>
-                <BtnViewLater>
-                  <BtnViewLogo src={PlusLogo} />
-                  VER DESPUÉS
-                </BtnViewLater>
-              </DivBtn>
-            </DivSlider>
-          </Carousel.Item>;
-
-          <Carousel.Item>
-            <DivSlider>
-              <VideoYT
-                // width="720"
-                // height="315"
-                src='https://www.youtube.com/embed/SV0s2S9reT0?controls=0'
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></VideoYT>
-              <DivBtn>
-                <BtnViewNow>
-                  <BtnViewLogo src={PlayLogo} />
-                  VER AHORA
-                </BtnViewNow>
-                <BtnViewLater>
-                  <BtnViewLogo src={PlusLogo} />
-                  VER DESPUÉS
-                </BtnViewLater>
-              </DivBtn>
-            </DivSlider>
-          </Carousel.Item>;
-      
+        <Carousel.Item>
+          <DivSlider>
+            <VideoYT
+              // width="720"
+              // height="315"
+              src="https://www.youtube.com/embed/pBvH8hvnJPk?controls=0"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></VideoYT>
+            <DivBtn>
+              <BtnViewNow>
+                <BtnViewLogo src={PlayLogo} />
+                VER AHORA
+              </BtnViewNow>
+              <BtnViewLater>
+                <BtnViewLogo src={PlusLogo} />
+                VER DESPUÉS
+              </BtnViewLater>
+            </DivBtn>
+          </DivSlider>
+        </Carousel.Item>
+        ;
+        <Carousel.Item>
+          <DivSlider>
+            <VideoYT
+              // width="720"
+              // height="315"
+              src="https://www.youtube.com/embed/SV0s2S9reT0?controls=0"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></VideoYT>
+            <DivBtn>
+              <BtnViewNow>
+                <BtnViewLogo src={PlayLogo} />
+                VER AHORA
+              </BtnViewNow>
+              <BtnViewLater>
+                <BtnViewLogo src={PlusLogo} />
+                VER DESPUÉS
+              </BtnViewLater>
+            </DivBtn>
+          </DivSlider>
+        </Carousel.Item>
+        ;
       </Carousel>
-
-        
     </>
   );
 };

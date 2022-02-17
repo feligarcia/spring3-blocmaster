@@ -1,10 +1,8 @@
-import React from 'react'
-import '../styleds/Loader.css'
+import React from "react";
+import "../styleds/Loader.css";
 
 const Loader = () => {
-  return (
-    <div className='loader'>Cargando...</div>
-  )
-}
+  return <div className="loader">Cargando...</div>;
+};
 
-export default Loader
+export default Loader;

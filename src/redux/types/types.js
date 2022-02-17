@@ -4,6 +4,7 @@ export const types = {
     delete: 'delete User PENDIENTE',
     login: 'login User',
     logout: 'logout User',
+    location: 'location User'
 }
 
 export const typesFavorites = {
@@ -11,4 +12,9 @@ export const typesFavorites = {
     list: 'list FavoriteMovie',
     delete: 'delete FavoriteMovie',
     modify: 'modify FavoriteMovie'
+}
+
+export const typesFunction = {
+    mostrarModal: 'mostrar Modal',
+    mostrarRegistro:'mostrar Registro'
 }

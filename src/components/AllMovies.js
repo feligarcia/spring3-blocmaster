@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+
 import {
   DivMovies,
   DivCardMovie,
@@ -8,12 +8,11 @@ import {
   StartImg,
   Hrating,
 } from "../styleds/MoviesGrid";
-import { urlpopular } from '../helpers/url';
-import axios from 'axios';
-import { ViewDescription } from "../functions/ViewDescription";
+import { urlpopular } from "../helpers/url";
+import axios from "axios";
 
 
-const AllMovies =() => {
+const AllMovies = () => {
   const [movies, setMovies] = useState();
   const getTop = () => {
     axios.get(urlpopular).then((response) => {
@@ -35,7 +34,7 @@ const AllMovies =() => {
       <h1>Todas las peliculas</h1>
       <DivMovies>
         {movies?.map((movie) => (
-          <DivCardMovie key={movie.id} onClick={ViewDescription(movies)}>
+          <DivCardMovie key={movie.id} >
             <RatingBox>
               <StartImg />
               <Hrating>{movie.vote_average}</Hrating>
@@ -46,6 +45,6 @@ const AllMovies =() => {
       </DivMovies>
     </>
   );
-}
+};
 
 export default AllMovies;

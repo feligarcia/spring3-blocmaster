@@ -1,37 +1,36 @@
 import React from "react";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { imgUpload } from "../functions/imgUpload";
-import { useNavigate} from 'react-router-dom'
-import { loginGoogle, loginSincronico, loginEmailPassword } from "../redux/actions/actionLogin";
 
-const Sigin = () => {
-  const navigate = useNavigate()
+import { loginGoogle, loginEmailPassword } from "../redux/actions/actionLogin";
+import { LinkIngreso } from "./Login";
+import { ShowRegistro } from "../redux/actions/showRegistro";
+
+const Sigin = (logsig, setLogsig) => {
+ 
   const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
-      },
+    },
     onSubmit: (data) => {
-      console.log(data)
+      console.log(data);
       dispatch(loginEmailPassword(data));
       // navigate('/')
     },
   });
 
-  const handleGoogle = () =>{
-    dispatch(loginGoogle())
+  const handleGoogle = () => {
+    dispatch(loginGoogle());
     // navigate('/')
-  }
+  };
 
-  
   return (
     <div>
       <form className="form-group" onSubmit={formik.handleSubmit}>
-       
-<label>Correo electrónico</label>
+        <label>Correo electrónico</label>
         <input
           id="inputEmailSignIn"
           type="email"
@@ -53,7 +52,7 @@ const Sigin = () => {
           required
           onChange={formik.handleChange}
         />
-        
+
         <br></br>
         <div className="d-grid gap-2 mx-auto mt-2">
           <button
@@ -71,12 +70,15 @@ const Sigin = () => {
             <img
               className="google-icon"
               src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+              alt=""
             />
           </div>
           <p className="btn-text">
             <b>Entrar con google</b>
           </p>
         </div>
+        <br></br>
+        <LinkIngreso onClick={() => dispatch(ShowRegistro())}> ¿Deseas crear una cuenta? Haz click aqui</LinkIngreso>
       </form>
     </div>
   );

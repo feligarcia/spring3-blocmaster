@@ -1,6 +1,7 @@
 import {types} from '../types/types.js'
 const InitialState = {
-    user: []
+    user: [],
+    location:[]
 }
 
 export const userReducer = (state = InitialState, action) =>{
@@ -22,8 +23,13 @@ export const userReducer = (state = InitialState, action) =>{
            
            case types.login:
            return {
-               user: [action.payload]
+               ...state, user: [action.payload]
            }
+
+           case types.location:
+            return {
+                ...state, location: [action.payload]
+            }
            
           
        default:

@@ -12,8 +12,8 @@ export const ListRoutes = () => {
         <Route path="/" element={<Home />}>
           <Route index element={<AllMovies />} />
           <Route path="top" element={<TopRated />} />
-          <Route path="modal/:id" element={<ModalMovie />} />
         </Route>
+        <Route path="modal/:id" element={<ModalMovie />} />
         <Route path="personal" element={<Personal />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

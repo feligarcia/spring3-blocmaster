@@ -14,7 +14,7 @@ export const loginGoogle = () => {
     signInWithPopup(auth, google)
       .then(({ user }) => {
         console.log(user);
-        dispatch(loginSincronico(user.uid, user.displayName, user.email));
+        dispatch(loginSincronico(user.uid, user.displayName, user.email, user.photoURL));
       })
       .catch((e) => {
         console.log(e);
@@ -38,13 +38,14 @@ export const loginEmailPassword = (logUser) => {
   };
 };
 
-export const loginSincronico = (id, displayname, email) => {
+export const loginSincronico = (id, displayname, email, image) => {
   return {
     type: types.login,
     payload: {
       id,
       displayname,
       email,
+      image
     },
   };
 };

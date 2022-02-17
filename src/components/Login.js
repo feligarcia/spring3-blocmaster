@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { createUserActionAsincrono } from "../redux/actions/createUserAction";
 import { imgUpload } from "../functions/imgUpload";
-import { useNavigate } from "react-router-dom";
+
 import "../styleds/GoogleBtn.css";
+import styled from "styled-components";
+import { ShowLogin } from "../redux/actions/showRegistro";
 
-const Login = () => {
-  const navigate = useNavigate();
+export const LinkIngreso = styled.h6`
+  color: var(--primary-color);
+`;
+
+
+
+const Login = (logsig, setLogsig) => {
+  
   const dispatch = useDispatch();
-
+const [imageURL, setimageURL] = useState('')
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -18,9 +26,10 @@ const Login = () => {
       image: "",
     },
     onSubmit: (data) => {
-      console.log(data); //no me manda URL de cloudinary
+      
+      data.image = imageURL
       dispatch(createUserActionAsincrono(data));
-      // navigate("/");
+      
     },
   });
 
@@ -29,8 +38,8 @@ const Login = () => {
     const file = e.target.files[0];
     imgUpload(file)
       .then((response) => {
-        formik.initialValues.image = response;
-        console.log(formik.initialValues);
+        setimageURL(response)
+        console.log(imageURL);
       })
       .catch((error) => console.log(error));
   };
@@ -93,7 +102,7 @@ const Login = () => {
           </button>
         </div>
         <br></br>
-        
+      <LinkIngreso onClick={() => dispatch(ShowLogin())}>¿Ya tienes una cuenta? Haz click aqui</LinkIngreso>
       </form>
     </div>
   );

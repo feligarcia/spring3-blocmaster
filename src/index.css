@@ -13,6 +13,12 @@
 *{
   background-color: var(--background-principal);
   
+  
+}
+
+img{
+  border: none;
+  outline: none;
 }
 h1,h2,h3,h4,h5,h6,p, label {
   color: var(--white-color);
@@ -64,3 +70,6 @@ code {
   background-color: initial;
 }
 
+span{
+  background-color: inherit;
+}

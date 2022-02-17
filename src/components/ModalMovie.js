@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+
+import {  Modal } from "react-bootstrap";
 import styled from "styled-components";
 import {
   BtnViewNow,
@@ -9,6 +9,8 @@ import {
 import PlayLogo from "../data/images/play.png";
 import PlusLogo from "../data/images/plus.png";
 import ImgPrueba from "../data/images/infamous.png";
+import { useDispatch, useSelector } from "react-redux";
+import { CloseModal } from "../redux/actions/showModal";
 
 const DivImg = styled.div`
   margin: 5%;
@@ -37,20 +39,15 @@ const DivDescription = styled.div`
   background-color: transparent;
 `
 export const ModalMovie = () => {
-  const [lgShow, setLgShow] = useState(false);
-  const handleClose = () => setLgShow(false);
-  const handleShow = () => setLgShow(true);
-
+  const dispatch = useDispatch();
+  const { lgShow } = useSelector((store) => store.app);
+ 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Lanzar modal desde modal
-      </Button>
-
       <Modal
         size="lg"
         show={lgShow}
-        onHide={() => setLgShow(false)}
+        onHide={() => dispatch(CloseModal())}
         aria-labelledby="example-modal-sizes-title-lg"
         className="modal"
       >
@@ -59,7 +56,7 @@ export const ModalMovie = () => {
             type="button"
             className="btn-close"
             aria-label="Close"
-            onClick={handleClose}
+            onClick={() => dispatch(CloseModal())}
           ></button>
           <h1>Infamous</h1>
           <p>

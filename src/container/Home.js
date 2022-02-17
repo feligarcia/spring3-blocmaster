@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Outlet, useNavigate} from 'react-router-dom'
+import { Outlet} from 'react-router-dom'
 import { ModalMovie } from '../components/ModalMovie';
 
 import SliderMovies from '../components/SliderMovies';
@@ -26,7 +26,8 @@ background-color: inherit;
 
 
 const  Home =() => {
-    const navigate = useNavigate()
+
+    
   return (
     <LayaoutHome>
       <NavBar />

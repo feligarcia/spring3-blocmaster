@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+
 import { endpoint } from "../helpers/url";
-import styled from "styled-components";
+
 import {
   DivMovies,
   DivCardMovie,
@@ -11,10 +11,12 @@ import {
   StartImg,
   Hrating,
 } from "../styleds/MoviesGrid";
-// import { ViewDescription } from "../functions/ViewDescription";
+import { ShowModal } from "../redux/actions/showModal";
+import { useDispatch } from "react-redux";
+
 
 const TopRated = () => {
-  const navigate = useNavigate()
+ 
   const [movies, setMovies] = useState();
   const getTop = () => {
     axios.get(endpoint + `&page=3`).then((response) => {
@@ -32,17 +34,15 @@ const TopRated = () => {
     return path ? `https://image.tmdb.org/t/p/w342${path}` : null;
   };
 
-  const ViewDescription= (id)=>{
-    console.log(id)
-  navigate(`/modal/${id}`)
+  const dispatch = useDispatch();
 
-  }
+
   return (
     <>
       <h1>Las mejor valoradas</h1>
       <DivMovies>
         {movies?.map((movie) => (
-          <DivCardMovie key={movie.id} onClick={()=>ViewDescription(movie.id)}>
+          <DivCardMovie key={movie.id} onClick={()=>dispatch(ShowModal())}>
             <RatingBox>
               <StartImg />
               <Hrating>{movie.vote_average}</Hrating>
