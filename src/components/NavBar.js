@@ -8,6 +8,8 @@ import { logoutAsincrono } from "../redux/actions/actionLogin";
 import { useDispatch, useSelector } from "react-redux";
 import Avatar from "../data/images/avatar.png";
 import { ShowLogin } from "../redux/actions/showRegistro";
+import { useFormik } from "formik";
+import { actionSearch } from "../redux/actions/actionSearch";
 
 const NavDiv = styled.div`
   position: relative;
@@ -51,13 +53,20 @@ const DivSearch = styled.div`
   }
 `;
 const InputSearch = styled.input`
-  width: 86%;
+  width: 100%;
+  height: 100%;
   color: black;
   background-color: white;
   border-style: none;
   border-radius: 8px 0px 0px 8px;
-  border: 1px solid #fed941;
+
   font-size: 1.1rem;
+`;
+
+const FormSear = styled.form`
+  width: 86%;
+  border-radius: 8px 0px 0px 8px;
+  /* border: 1px solid #fed941; */
 `;
 
 const DivLogoCont = styled.div`
@@ -86,18 +95,32 @@ const Pubicacion = styled.p`
 const Rowdiv = styled.div`
   display: flex;
   flex-direction: row;
-  align-items:center;
-  /* border: 1px solid var(--primary-color); */
-  /* border-radius: 10px; */
-  /* background-color:black; */
+  align-items: center;
 `;
 const NavBar = () => {
   const { user } = useSelector((store) => store.user);
   const location = useSelector((store) => store.user.location);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const formik = useFormik({
+    initialValues: {
+      search: "",
+    },
+    onSubmit: (data) => {
+      // console.log(data);
+      dispatch(actionSearch(data.search))
+      // dispatch(actionSearch(formik.values.search))
+      // navigate('/')
+    },
+  });
+   dispatch(actionSearch(formik.values.search))
+
+ 
+
+
   const handleLogout = () => {
-    dispatch(ShowLogin())
+    dispatch(ShowLogin());
     dispatch(logoutAsincrono());
   };
 
@@ -109,7 +132,14 @@ const NavBar = () => {
       <LinkTitle onClick={() => navigate("/top")}>Más valoradas</LinkTitle>
       <LinkTitle>Menos valoradas</LinkTitle>
       <DivSearch>
-        <InputSearch placeholder="Busca tu pelicula favorita"></InputSearch>
+        <FormSear onSubmit={formik.handleSubmit}>
+          <InputSearch
+            type="text"
+            name="search"
+            placeholder="Busca tu pelicula favorita"
+            onChange={formik.handleChange}
+          ></InputSearch>
+        </FormSear>
         <DivLogoCont>
           <InputLogo src={SearchLogo}></InputLogo>
         </DivLogoCont>
@@ -119,7 +149,7 @@ const NavBar = () => {
       </Pubicacion>
       <Rowdiv>
         <AvatarImg
-          src={user ? user[0]?.image:Avatar}
+          src={user ? user[0]?.image : Avatar}
           onClick={() => navigate("/personal")}
         />
         <LogoutIcon onClick={() => handleLogout()} />

@@ -8,9 +8,11 @@ import {
 } from "../styleds/BtnView";
 import PlayLogo from "../data/images/play.png";
 import PlusLogo from "../data/images/plus.png";
-import ImgPrueba from "../data/images/infamous.png";
+
 import { useDispatch, useSelector } from "react-redux";
 import { CloseModal } from "../redux/actions/showModal";
+import { regisFavASincrono } from "../redux/actions/favActions";
+
 
 const DivImg = styled.div`
   margin: 5%;
@@ -38,10 +40,11 @@ const DivDescription = styled.div`
   flex-direction: column;
   background-color: transparent;
 `
-export const ModalMovie = () => {
+export const ModalMovie =  () => {
   const dispatch = useDispatch();
   const { lgShow } = useSelector((store) => store.app);
- 
+   const { movie } =  useSelector((store) => store.app);
+  
   return (
     <>
       <Modal
@@ -58,29 +61,26 @@ export const ModalMovie = () => {
             aria-label="Close"
             onClick={() => dispatch(CloseModal())}
           ></button>
-          <h1>Infamous</h1>
+          <h1>{movie?.titulo}</h1>
           <p>
-            Arielle nació en un pueblo pequeño, pero sueña con ser famosa. Tras
-            conocer a Dean, un delincuente, la pareja empieza a asaltar negocios
-            y presumir de sus fechorías en las redes sociales, en busca de una
-            notoriedad manchada de sangre.
+            {movie?.descripcion}
           </p>
           <br></br>
-          <Pdata>2020 · Crimen/Suspenso · 1h 40m</Pdata>
+          <Pdata>{movie?.rating}   ·   {movie?.fecha_lanzamiento?.slice(0,4)}</Pdata>
           <br></br>
           <DivBtnModal>
-            <BtnViewNow>
+            <BtnViewNow title={movie?.id} onClick={()=>window.open(movie?.trailer,'_blank')} >
               <BtnViewLogo src={PlayLogo} />
-              VER AHORA
+              VER TRAILER
             </BtnViewNow>
-            <BtnViewLater>
+            <BtnViewLater title={movie?.id} onClick={() => dispatch(regisFavASincrono(movie))}>
               <BtnViewLogo src={PlusLogo} />
               VER DESPUÉS
             </BtnViewLater>
           </DivBtnModal>
         </DivDescription>
         <DivImg>
-          <ImgDes src={ImgPrueba} />
+          <ImgDes src={movie?.imagen} />
         </DivImg>
         
       </Modal>

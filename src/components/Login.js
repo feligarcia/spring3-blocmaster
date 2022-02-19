@@ -12,12 +12,9 @@ export const LinkIngreso = styled.h6`
   color: var(--primary-color);
 `;
 
-
-
 const Login = (logsig, setLogsig) => {
-  
   const dispatch = useDispatch();
-const [imageURL, setimageURL] = useState('')
+  const [imageURL, setimageURL] = useState("");
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -26,10 +23,8 @@ const [imageURL, setimageURL] = useState('')
       image: "",
     },
     onSubmit: (data) => {
-      
-      data.image = imageURL
+      data.image = imageURL;
       dispatch(createUserActionAsincrono(data));
-      
     },
   });
 
@@ -38,7 +33,7 @@ const [imageURL, setimageURL] = useState('')
     const file = e.target.files[0];
     imgUpload(file)
       .then((response) => {
-        setimageURL(response)
+        setimageURL(response);
         console.log(imageURL);
       })
       .catch((error) => console.log(error));
@@ -102,7 +97,9 @@ const [imageURL, setimageURL] = useState('')
           </button>
         </div>
         <br></br>
-      <LinkIngreso onClick={() => dispatch(ShowLogin())}>¿Ya tienes una cuenta? Haz click aqui</LinkIngreso>
+        <LinkIngreso onClick={() => dispatch(ShowLogin())}>
+          ¿Ya tienes una cuenta? Haz click aqui
+        </LinkIngreso>
       </form>
     </div>
   );

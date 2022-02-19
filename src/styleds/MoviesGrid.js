@@ -8,6 +8,7 @@ export const DivMovies = styled.div`
     grid-column-gap: 25px;
     grid-row-gap: 25px;
     background-color: inherit;
+    margin-bottom: 20px;
 `
 export const DivCardMovie = styled.div`
     position:relative;
@@ -17,6 +18,17 @@ export const DivCardMovie = styled.div`
     border-radius: 8px;
     background-color: orange;
     overflow: hidden;
+`
+
+export const DivNoFoundMovie = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 50px auto;
+`
+export const ImgMovienoFound = styled.img`
+width: 500px;
+height: 400px;
 `
 export const ImgCard = styled.img`
 /* object-fit: fill; //hacer que funcione */

@@ -1,20 +1,20 @@
 export const types = {
     register: 'register User',
-    list: 'list User PENDIENTE',
-    delete: 'delete User PENDIENTE',
     login: 'login User',
     logout: 'logout User',
     location: 'location User'
 }
 
 export const typesFavorites = {
-    register: 'register FavoriteMovie',
-    list: 'list FavoriteMovie',
-    delete: 'delete FavoriteMovie',
-    modify: 'modify FavoriteMovie'
+    registrar: 'register FavoriteMovie',
+    listar: 'list FavoriteMovie',
+    borrar: 'delete FavoriteMovie PENDIENTE',
+    modificar: 'modify FavoriteMovie PENDIENTE'
 }
 
 export const typesFunction = {
     mostrarModal: 'mostrar Modal',
-    mostrarRegistro:'mostrar Registro'
+    mostrarRegistro:'mostrar Registro',
+    CargarMovies: 'cargar Peliculas',
+    search: 'search Movie'
 }

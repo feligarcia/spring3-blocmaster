@@ -11,6 +11,7 @@ import { PrivateRoute } from "./PrivateRoutes";
 import Loader from "../components/Loader";
 import { locationAsincrono } from "../redux/actions/userLocation";
 import { useDispatch } from "react-redux";
+import CargarMoviesAPI from "../components/CargarMoviesAPI";
 
 function AppRouter() {
   const [checking, setChecking] = useState(true);
@@ -27,9 +28,15 @@ function AppRouter() {
       }
       setChecking(false);
     });
-    
-    dispatch(locationAsincrono());
+
+   
   }, [setChecking, setIsLogin]);
+
+useEffect(() => {
+  dispatch(locationAsincrono());
+}, [])
+
+
 
   if (checking) {
     return <Loader />;
@@ -43,6 +50,7 @@ function AppRouter() {
             path="/login"
             element={
               <PublicRoutes isAuthenticated={isLogin}>
+                {/* <CargarMoviesAPI /> */}
                 <SingLogIn />
               </PublicRoutes>
             }

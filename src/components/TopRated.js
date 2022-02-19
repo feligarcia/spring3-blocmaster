@@ -1,7 +1,8 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 
-import { endpoint } from "../helpers/url";
+import React, { useEffect, useState } from "react";
+import Loader from "../components/Loader";
+import noFoundMovieImg from "../data/images/noFoundMovie.png";
+import { DivNoFoundMovie } from "../styleds/MoviesGrid";
 
 import {
   DivMovies,
@@ -12,42 +13,75 @@ import {
   Hrating,
 } from "../styleds/MoviesGrid";
 import { ShowModal } from "../redux/actions/showModal";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { ImgMovienoFound } from "../styleds/MoviesGrid";
 
 const TopRated = () => {
- 
-  const [movies, setMovies] = useState();
-  const getTop = () => {
-    axios.get(endpoint + `&page=3`).then((response) => {
-      setMovies(response.data.results);
-      console.log(response.data.results);
-      console.log(response.data);
-    });
+  const [itemsload, setitemsload] = useState(15);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [itemsload]);
+
+  function handleScroll() {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+      document.documentElement.offsetHeight
+    )
+      return;
+    console.log("Cargando mas items");
+    if (itemsload < movies?.length) {
+      setitemsload(itemsload + 15);
+    }
+  }
+
+  const { movies } = useSelector((store) => store.app);
+  const { search } = useSelector((store) => store.app);
+
+  const filterMovie = (name, movies) => {
+    name = name?.toLocaleLowerCase();
+    return movies.filter((movie) =>
+      movie.titulo.toLocaleLowerCase().includes(name)
+    );
   };
 
-  useEffect(() => {
-    getTop();
-  }, []);
-  console.log(movies);
-  const getImg = (path) => {
-    return path ? `https://image.tmdb.org/t/p/w342${path}` : null;
-  };
+  let peliculasFiltradas = [];
+  const moviesInitialZero = movies.slice(0, itemsload);
+
+  if (search === "") {
+    peliculasFiltradas = moviesInitialZero;
+  } else {
+    peliculasFiltradas = filterMovie(search, movies);
+  }
 
   const dispatch = useDispatch();
+  console.log(search);
+  if (peliculasFiltradas.length === 0 && search !== "") {
+    return (
+      <DivNoFoundMovie>
+        <ImgMovienoFound src={noFoundMovieImg} alt="" />
+        <h2>No se encontraron resultados para "{search}"</h2>
+      </DivNoFoundMovie>
+    );
+  } else if (peliculasFiltradas.length === 0) {
+    return <Loader />;
+  }
 
-
+  console.log(itemsload);
   return (
     <>
       <h1>Las mejor valoradas</h1>
       <DivMovies>
-        {movies?.map((movie) => (
-          <DivCardMovie key={movie.id} onClick={()=>dispatch(ShowModal())}>
+        {peliculasFiltradas?.map((movie) => (
+          <DivCardMovie
+            key={movie.id}
+            onClick={() => dispatch(ShowModal(movie))}
+          >
             <RatingBox>
               <StartImg />
-              <Hrating>{movie.vote_average}</Hrating>
+              <Hrating>{movie.rating}</Hrating>
             </RatingBox>
-            <ImgCard src={getImg(movie.poster_path)} />
+            <ImgCard src={movie.imagen} />
           </DivCardMovie>
         ))}
       </DivMovies>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { Outlet} from 'react-router-dom'
@@ -6,6 +6,8 @@ import { ModalMovie } from '../components/ModalMovie';
 
 import SliderMovies from '../components/SliderMovies';
 import NavBar from '../components/NavBar';
+import { useDispatch } from 'react-redux';
+import { LoadMoviesAsincrono } from '../redux/actions/CargarMovies';
 
 const LayaoutHome = styled.div`
     display: grid;
@@ -26,8 +28,12 @@ background-color: inherit;
 
 
 const  Home =() => {
+  const dispatch = useDispatch()
 
-    
+  useEffect(() => {
+    dispatch(LoadMoviesAsincrono())
+  }, [])
+  
   return (
     <LayaoutHome>
       <NavBar />

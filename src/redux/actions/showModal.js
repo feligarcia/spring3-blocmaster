@@ -1,9 +1,11 @@
 import { typesFunction } from "../types/types";
 
-export const ShowModal = () => {
+export const ShowModal = (movie) => {
+
   return {
     type: typesFunction.mostrarModal,
     payload: true,
+    movie:movie,
   };
 };
 
