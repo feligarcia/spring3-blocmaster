@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/spring3-blocmaster/static/css/main.8062912e.css",
+    "main.js": "/spring3-blocmaster/static/js/main.06d11428.js",
+    "static/media/noFoundMovie.png": "/spring3-blocmaster/static/media/noFoundMovie.ded4e4b4a21fdb331b61.png",
+    "static/media/avatar.png": "/spring3-blocmaster/static/media/avatar.66f18ef0db6a72e0eede.png",
+    "static/media/logo.png": "/spring3-blocmaster/static/media/logo.0b10b58169b08b0a726a.png",
+    "index.html": "/spring3-blocmaster/index.html",
+    "main.8062912e.css.map": "/spring3-blocmaster/static/css/main.8062912e.css.map",
+    "main.06d11428.js.map": "/spring3-blocmaster/static/js/main.06d11428.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8062912e.css",
+    "static/js/main.06d11428.js"
+  ]
+}
