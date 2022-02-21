@@ -10,8 +10,8 @@ export const ListRoutes = () => {
     <div>
       <Routes>
         <Route path="/" element={<Home />}>
-          <Route index element={<AllMovies />} />
-          <Route path="top" element={<TopRated />} />
+          {/* <Route index element={<TopRated />} />
+          <Route path="top" element={<TopRated />} /> */}
         </Route>
         <Route path="modal/:id" element={<ModalMovie />} />
         <Route path="personal" element={<Personal />} />

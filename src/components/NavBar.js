@@ -128,8 +128,8 @@ const NavBar = () => {
     <NavDiv>
       <LogoNav src={Logo} onClick={() => navigate("/")}></LogoNav>
 
-      <LinkTitle onClick={() => navigate("/")}>Todas</LinkTitle>
-      <LinkTitle onClick={() => navigate("/top")}>Más valoradas</LinkTitle>
+      <LinkTitle>Todas</LinkTitle>
+      <LinkTitle >Más valoradas</LinkTitle>
       <LinkTitle>Menos valoradas</LinkTitle>
       <DivSearch>
         <FormSear onSubmit={formik.handleSubmit}>

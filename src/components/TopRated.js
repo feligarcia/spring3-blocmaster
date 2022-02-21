@@ -23,20 +23,25 @@ const TopRated = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [itemsload]);
 
-  function handleScroll() {
+  const { movies } = useSelector((store) => store.app);
+  const { search } = useSelector((store) => store.app);
+
+  const handleScroll= async ()=> {
     if (
       window.innerHeight + document.documentElement.scrollTop !==
       document.documentElement.offsetHeight
     )
       return;
     console.log("Cargando mas items");
+    console.log(itemsload)
+    await console.log(movies)
     if (itemsload < movies?.length) {
       setitemsload(itemsload + 15);
+      console.log('otros 15')
     }
   }
 
-  const { movies } = useSelector((store) => store.app);
-  const { search } = useSelector((store) => store.app);
+ 
 
   const filterMovie = (name, movies) => {
     name = name?.toLocaleLowerCase();
@@ -55,7 +60,7 @@ const TopRated = () => {
   }
 
   const dispatch = useDispatch();
-  console.log(search);
+ 
   if (peliculasFiltradas.length === 0 && search !== "") {
     return (
       <DivNoFoundMovie>

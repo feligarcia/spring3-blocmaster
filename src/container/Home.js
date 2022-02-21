@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Outlet} from 'react-router-dom'
 import { ModalMovie } from '../components/ModalMovie';
+import TopRated from '../components/TopRated';
 
 import SliderMovies from '../components/SliderMovies';
 import NavBar from '../components/NavBar';
@@ -41,7 +42,7 @@ const  Home =() => {
        
       <br></br>
       <MoviesSection>
-        <Outlet />
+        <TopRated />
       </MoviesSection>
       <ModalMovie />
     </LayaoutHome>

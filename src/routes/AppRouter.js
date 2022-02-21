@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes, HashRouter } from "react-router-dom";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -44,7 +44,7 @@ useEffect(() => {
 
   return (
     <div>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route
             path="/login"
@@ -74,7 +74,7 @@ useEffect(() => {
             }
           />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
