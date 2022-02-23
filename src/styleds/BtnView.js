@@ -13,7 +13,7 @@ width:40%;
 min-width:360px;
 max-height: 53px;
 height:15%;
-background-color:initial;
+background-color:transparent;
 `
 
 export const BtnViewNow = styled.button`

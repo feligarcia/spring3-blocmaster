@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import NavBar from "../components/NavBar";
 import { ProfileImg } from "../styleds/LoginGrid";
+import { ImgDelete } from "../styleds/MoviesGrid";
 import Avatar from "../data/images/avatar.png";
 import { Button } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
@@ -59,24 +60,24 @@ const DivCantMovies = styled.div`
 const DivBtns = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   height: 50%;
 `;
 
 const Personal = () => {
   const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
-  const { user } = useSelector((store) => store.user);
-  const { favMovies } = useSelector((store) => store.favs);
+    const { favMovies } = useSelector((store) => store.favs);
   const location = useSelector((store) => store.user.location);
+  const getUserLocalST = JSON.parse(localStorage.getItem('userBMApp'))
+  const {displayName, email, photoURL} = getUserLocalST
 
-
-  console.log(favMovies);
   const handleRating = (rate) => {
     setRating(rate);
   };
 
   useEffect(() => {
-    dispatch(listFavASincrono());
+    dispatch(listFavASincrono(email));
   }, []);
 
   return (
@@ -84,9 +85,9 @@ const Personal = () => {
       <NavBar />
       <br></br>
       <DivUser>
-        <ProfileImg src={user ? user[0]?.image : Avatar} />
-        <h4>Nombre: {user ? user[0]?.displayname : "Prueba"}</h4>
-        <h5>Correo: {user ? user[0]?.email : "Prueba"}</h5>
+        <ProfileImg src={getUserLocalST ? photoURL : Avatar} />
+        <h4>Nombre: {getUserLocalST ? displayName : "Prueba"}</h4>
+        <h5>Correo: {getUserLocalST ? email : "Prueba"}</h5>
         <h5>Ubicacion: {location ? location : "Ubicacion no encontrada"}</h5>
       </DivUser>
       <br></br>
@@ -107,8 +108,7 @@ const Personal = () => {
                   initialValue={Math.trunc(movie.rating / 2)}
                   size={18}
                   tooltipClassName={'tooltipstyle'}
-                  showTooltip
-                  tooltipArray={['Malisima', 'Mala', 'Normal', 'Buena', 'Perfecta']}
+               
                   fillColorArray={[
                     "#f17a45",
                     "#f19745",
@@ -122,9 +122,9 @@ const Personal = () => {
                 <Button variant="warning">
                   <p>Modificar</p>
                 </Button>
-                <Button variant="danger" onClick={()=>dispatch(borrarFavASincro(movie.id))}>
-                  <p>Eliminar</p>
-                </Button>
+               
+                  <ImgDelete onClick={()=>dispatch(borrarFavASincro(movie.id, email))}/>
+                
               </DivBtns>
             </DivItem>
           ))

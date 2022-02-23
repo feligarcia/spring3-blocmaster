@@ -13,7 +13,6 @@ export const loginGoogle = () => {
     const auth = getAuth();
     signInWithPopup(auth, google)
       .then(({ user }) => {
-        console.log(user);
         dispatch(loginSincronico(user.uid, user.displayName, user.email, user.photoURL));
       })
       .catch((e) => {
@@ -25,7 +24,6 @@ export const loginGoogle = () => {
 export const loginEmailPassword = (logUser) => {
   return (dispatch) => {
     const auth = getAuth();
-    console.log(logUser);
 
     signInWithEmailAndPassword(auth, logUser.email, logUser.password)
       .then(({ user }) => {

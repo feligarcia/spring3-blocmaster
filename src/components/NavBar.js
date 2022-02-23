@@ -10,6 +10,7 @@ import Avatar from "../data/images/avatar.png";
 import { ShowLogin } from "../redux/actions/showRegistro";
 import { useFormik } from "formik";
 import { actionSearch } from "../redux/actions/actionSearch";
+import { filtroMovieApp } from "../redux/actions/actionFiltroMovie";
 
 const NavDiv = styled.div`
   position: relative;
@@ -28,6 +29,9 @@ const LogoNav = styled.img`
   width: auto;
   max-width: 125px;
   background-color: inherit;
+  &:hover{
+    opacity: 0.5;
+  }
 `;
 const LinkTitle = styled.h5`
   background-color: inherit;
@@ -74,6 +78,7 @@ const DivLogoCont = styled.div`
 
   padding: 2% 4%;
   border-radius: 8px;
+  &:hover{opacity: 0.5;}
 `;
 const InputLogo = styled.img`
   margin: 0 auto;
@@ -98,7 +103,6 @@ const Rowdiv = styled.div`
   align-items: center;
 `;
 const NavBar = () => {
-  const { user } = useSelector((store) => store.user);
   const location = useSelector((store) => store.user.location);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -123,14 +127,14 @@ const NavBar = () => {
     dispatch(ShowLogin());
     dispatch(logoutAsincrono());
   };
-
+  const getUserLocalST = JSON.parse(localStorage.getItem('userBMApp'))
   return (
     <NavDiv>
       <LogoNav src={Logo} onClick={() => navigate("/")}></LogoNav>
 
-      <LinkTitle>Todas</LinkTitle>
-      <LinkTitle >Más valoradas</LinkTitle>
-      <LinkTitle>Menos valoradas</LinkTitle>
+      <LinkTitle onClick={()=>dispatch(filtroMovieApp('All'))}>Todas</LinkTitle>
+      <LinkTitle onClick={()=>dispatch(filtroMovieApp('Top'))} >Más valoradas</LinkTitle>
+      <LinkTitle onClick={()=>dispatch(filtroMovieApp('noTop'))}>Menos valoradas</LinkTitle>
       <DivSearch>
         <FormSear onSubmit={formik.handleSubmit}>
           <InputSearch
@@ -149,7 +153,7 @@ const NavBar = () => {
       </Pubicacion>
       <Rowdiv>
         <AvatarImg
-          src={user ? user[0]?.image : Avatar}
+          src={getUserLocalST ?getUserLocalST.photoURL : Avatar}
           onClick={() => navigate("/personal")}
         />
         <LogoutIcon onClick={() => handleLogout()} />

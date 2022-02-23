@@ -5,7 +5,8 @@ const initialState = {
   registroMostrar: false,
   movies:[],
   movie:[],
-  search:''
+  search:'',
+  filtroMovie:'All'
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -34,6 +35,13 @@ export const appReducer = (state = initialState, action) => {
         ...state,
         search: action.payload,
       };
+
+      case typesFunction.filtroMovie:
+      return {
+        ...state,
+        filtroMovie: action.payload,
+      };
+
 
     default:
       return state;

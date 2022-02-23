@@ -34,6 +34,7 @@ display: flex;
 flex-direction:row;
 max-height: 53px;
 height:15%;
+background-color: transparent;
 `
 const DivDescription = styled.div`
   display: flex;
@@ -44,7 +45,7 @@ export const ModalMovie =  () => {
   const dispatch = useDispatch();
   const { lgShow } = useSelector((store) => store.app);
    const { movie } =  useSelector((store) => store.app);
-  
+   const getUserLocalST = JSON.parse(localStorage.getItem('userBMApp'))
   return (
     <>
       <Modal
@@ -73,7 +74,7 @@ export const ModalMovie =  () => {
               <BtnViewLogo src={PlayLogo} />
               VER TRAILER
             </BtnViewNow>
-            <BtnViewLater title={movie?.id} onClick={() => dispatch(regisFavASincrono(movie))}>
+            <BtnViewLater title={movie?.id} onClick={() => dispatch(regisFavASincrono(movie, getUserLocalST.email))}>
               <BtnViewLogo src={PlusLogo} />
               VER DESPUÉS
             </BtnViewLater>

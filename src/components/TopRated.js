@@ -25,6 +25,7 @@ const TopRated = () => {
 
   const { movies } = useSelector((store) => store.app);
   const { search } = useSelector((store) => store.app);
+  const { filtroMovie } = useSelector((store) => store.app);
 
   const handleScroll= async ()=> {
     if (
@@ -34,7 +35,7 @@ const TopRated = () => {
       return;
     console.log("Cargando mas items");
     console.log(itemsload)
-    await console.log(movies)
+    
     if (itemsload < movies?.length) {
       setitemsload(itemsload + 15);
       console.log('otros 15')
@@ -51,11 +52,35 @@ const TopRated = () => {
   };
 
   let peliculasFiltradas = [];
-  const moviesInitialZero = movies.slice(0, itemsload);
+  let movieswithFilter = []
+  let hText = ''
+ 
+  
+switch (filtroMovie) {
+  case 'Top':
+    movieswithFilter = movies.sort(((a, b) => b.rating - a.rating))
+    hText = 'Las mejor valoradas'
+    break;
+
+    case 'noTop':
+      movieswithFilter = movies.sort(((a, b) => a.rating - b.rating))
+      hText = 'Las menos valoradas'
+    break;
+
+    case 'All':
+      hText = 'Todas las peliculas'
+      movieswithFilter = movies?.sort()
+    break;
+
+  
+}
+
+  const moviesInitialZero = movieswithFilter.slice(0, itemsload);
 
   if (search === "") {
     peliculasFiltradas = moviesInitialZero;
   } else {
+    hText = 'Todas las peliculas'
     peliculasFiltradas = filterMovie(search, movies);
   }
 
@@ -75,7 +100,7 @@ const TopRated = () => {
   console.log(itemsload);
   return (
     <>
-      <h1>Las mejor valoradas</h1>
+      <h1>{hText}</h1>
       <DivMovies>
         {peliculasFiltradas?.map((movie) => (
           <DivCardMovie

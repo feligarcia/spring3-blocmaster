@@ -8,10 +8,10 @@ export const AvatarImg = styled.img`
    height: 46px;
    background-color: initial;
    border-radius:50%;
-   background-repeat: no-repeat;
-   
+   background-repeat: no-repeat;  
    background-size: cover;
    border:0;
+   &:hover{opacity: 0.5;}
    
 `
 
@@ -34,4 +34,8 @@ export const LogoutIcon = styled.div`
    background-repeat: no-repeat;
    background-size: cover;
    filter: invert(100%);
+   &:hover{
+      opacity: 0.5;
+      filter: hue-rotate(30deg) invert(100%)
+      }
 `

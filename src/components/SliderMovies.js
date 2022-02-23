@@ -36,15 +36,12 @@ const VideoYT = styled.iframe`
 const SliderMovies = () => {
   const { movies } = useSelector((store) => store.app);
   const [trailers, settrailers] = useState([]);
-
-  // const trailers = movies.slice(0, 4);
   const [index, setIndex] = useState(0);
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
- useEffect( () => {
-    
+  useEffect(() => {
     Prueba();
   }, [trailers]);
 
@@ -52,48 +49,48 @@ const dispatch = useDispatch()
     await movies;
     if (trailers.length < 3) {
       settrailers(movies.slice(0, 4));
-
-      
-    } 
+    }
   };
-  if (trailers.length < 1) {
-    return <Loader />;
-  }
- 
-  console.log(trailers);
+
+  const getUserLocalST = JSON.parse(localStorage.getItem("userBMApp"));
 
   return (
     <>
       <Carousel activeIndex={index} onSelect={handleSelect}>
-        {
-        
-        (trailers) ?
-        (
-        trailers?.map( (trailer) => (
-          <Carousel.Item key={trailer?.id}>
-            <DivSlider>
-              <VideoYT
-                 src={trailer?.trailer}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></VideoYT>
-              <DivBtn>
-                <BtnViewNow title={trailer?.id} onClick={()=>window.open(trailer?.trailer,'_blank')} >
-                  <BtnViewLogo src={PlayLogo} />
-                  VER AHORA
-                </BtnViewNow>
-                <BtnViewLater onClick={() => dispatch(regisFavASincrono(trailer))}>
-                  <BtnViewLogo src={PlusLogo} />
-                  VER DESPUÉS
-                </BtnViewLater>
-              </DivBtn>
-            </DivSlider>
-          </Carousel.Item>
-        ))
-        ) : <Loader/>
-      }
+        {trailers ? (
+          trailers?.map((trailer) => (
+            <Carousel.Item key={trailer?.id}>
+              <DivSlider>
+                <VideoYT
+                  src={trailer?.trailer}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></VideoYT>
+                <DivBtn>
+                  <BtnViewNow
+                    title={trailer?.id}
+                    onClick={() => window.open(trailer?.trailer, "_blank")}
+                  >
+                    <BtnViewLogo src={PlayLogo} />
+                    VER AHORA
+                  </BtnViewNow>
+                  <BtnViewLater
+                    onClick={() =>
+                      dispatch(regisFavASincrono(trailer, getUserLocalST.email))
+                    }
+                  >
+                    <BtnViewLogo src={PlusLogo} />
+                    VER DESPUÉS
+                  </BtnViewLater>
+                </DivBtn>
+              </DivSlider>
+            </Carousel.Item>
+          ))
+        ) : (
+          <Loader />
+        )}
       </Carousel>
     </>
   );

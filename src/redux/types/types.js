@@ -8,7 +8,7 @@ export const types = {
 export const typesFavorites = {
     registrar: 'register FavoriteMovie',
     listar: 'list FavoriteMovie',
-    borrar: 'delete FavoriteMovie PENDIENTE',
+    borrar: 'delete FavoriteMovie',
     modificar: 'modify FavoriteMovie PENDIENTE'
 }
 
@@ -16,5 +16,6 @@ export const typesFunction = {
     mostrarModal: 'mostrar Modal',
     mostrarRegistro:'mostrar Registro',
     CargarMovies: 'cargar Peliculas',
-    search: 'search Movie'
+    search: 'search Movie',
+    filtroMovie: 'filtrar TipoMovie'
 }

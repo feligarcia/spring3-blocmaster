@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Star from '../data/images/star.png'
+import DELicon from '../data/images/remove.png'
 
 export const DivMovies = styled.div`
     display: grid;
@@ -58,4 +59,16 @@ export const StartImg = styled.div`
 `
 export const Hrating = styled.h2`   
    background-color: initial;
+`
+
+export const ImgDelete = styled.div`   
+    width: 26px;
+   height: 26px;
+   background-color: initial;
+   background-image: url(${DELicon});
+   background-repeat: no-repeat;
+   background-size: cover;
+   &:hover{
+       opacity: 0.5;
+   }
 `
