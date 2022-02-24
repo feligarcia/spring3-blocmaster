@@ -47,10 +47,10 @@ export const regisFavASincrono = (movie, emailuser) => {
       existe = true;
     });
     if (!existe) {
-      // console.log(movie)
+     
       const {descripcion,fecha_lanzamiento,id, imagen, rating, titulo, trailer} = movie
       const newMovieFa = {descripcion,fecha_lanzamiento,id, imagen, rating, titulo, trailer, 'email':emailuser}    
-      console.log(newMovieFa)  
+     
          addDoc(collection(db, "userFavorites"), newMovieFa)
         .then((resp) => {
           dispatch(regisFavSicrono(newMovieFa));

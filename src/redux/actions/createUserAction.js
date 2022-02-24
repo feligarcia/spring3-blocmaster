@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 
 export const createUserActionAsincrono = (newUser) => {
-  console.log(newUser);
+ 
   return (dispatch) => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, newUser.email, newUser.password)

@@ -112,10 +112,9 @@ const NavBar = () => {
       search: "",
     },
     onSubmit: (data) => {
-      // console.log(data);
+    
       dispatch(actionSearch(data.search))
-      // dispatch(actionSearch(formik.values.search))
-      // navigate('/')
+     
     },
   });
    dispatch(actionSearch(formik.values.search))

@@ -34,7 +34,6 @@ const Login = (logsig, setLogsig) => {
     imgUpload(file)
       .then((response) => {
         setimageURL(response);
-        console.log(imageURL);
       })
       .catch((error) => console.log(error));
   };

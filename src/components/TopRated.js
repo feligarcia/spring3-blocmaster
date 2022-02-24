@@ -34,7 +34,7 @@ const TopRated = () => {
     )
       return;
     console.log("Cargando mas items");
-    console.log(itemsload)
+    
     
     if (itemsload < movies?.length) {
       setitemsload(itemsload + 15);
