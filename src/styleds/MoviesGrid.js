@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Star from '../data/images/star.png'
 import DELicon from '../data/images/remove.png'
+import EDITicon from '../data/images/edit.png'
 
 export const DivMovies = styled.div`
     display: grid;
@@ -68,6 +69,18 @@ export const ImgDelete = styled.div`
    background-image: url(${DELicon});
    background-repeat: no-repeat;
    background-size: cover;
+   &:hover{
+       opacity: 0.5;
+   }
+`
+export const ImgEdit = styled.div`   
+    width: 26px;
+   height: 26px;
+   background-color: initial;
+   background-image: url(${EDITicon});
+   background-repeat: no-repeat;
+   background-size: cover;
+   margin: auto 25px;
    &:hover{
        opacity: 0.5;
    }

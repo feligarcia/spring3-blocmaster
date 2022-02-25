@@ -74,7 +74,7 @@ const SliderMovies = () => {
                     onClick={() => window.open(trailer?.trailer, "_blank")}
                   >
                     <BtnViewLogo src={PlayLogo} />
-                    VER AHORA
+                    VER TRAILER
                   </BtnViewNow>
                   <BtnViewLater
                     onClick={() =>

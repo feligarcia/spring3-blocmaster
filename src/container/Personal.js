@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import NavBar from "../components/NavBar";
 import { ProfileImg } from "../styleds/LoginGrid";
-import { ImgDelete } from "../styleds/MoviesGrid";
+import { ImgDelete, ImgEdit } from "../styleds/MoviesGrid";
 import Avatar from "../data/images/avatar.png";
 import { Button } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
@@ -61,6 +61,7 @@ const DivBtns = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  
   height: 50%;
 `;
 
@@ -119,10 +120,9 @@ const Personal = () => {
                 />
               </StarRating>
               <DivBtns>
-                <Button variant="warning">
-                  <p>Modificar</p>
-                </Button>
-               
+                
+                
+                <ImgEdit />
                   <ImgDelete onClick={()=>dispatch(borrarFavASincro(movie.id, email))}/>
                 
               </DivBtns>

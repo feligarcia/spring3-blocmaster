@@ -12,7 +12,8 @@ export const LinkIngreso = styled.h6`
   color: var(--primary-color);
 `;
 
-const Login = (logsig, setLogsig) => {
+const Login = () => {
+  
   const dispatch = useDispatch();
   const [imageURL, setimageURL] = useState("");
   const formik = useFormik({
@@ -25,6 +26,7 @@ const Login = (logsig, setLogsig) => {
     onSubmit: (data) => {
       data.image = imageURL;
       dispatch(createUserActionAsincrono(data));
+      dispatch(ShowLogin())
     },
   });
 

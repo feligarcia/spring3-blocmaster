@@ -5,9 +5,10 @@ import { useDispatch } from "react-redux";
 import { loginGoogle, loginEmailPassword } from "../redux/actions/actionLogin";
 import { LinkIngreso } from "./Login";
 import { ShowRegistro } from "../redux/actions/showRegistro";
+import { useNavigate } from "react-router-dom";
 
-const Sigin = (logsig, setLogsig) => {
- 
+const Sigin = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -18,19 +19,20 @@ const Sigin = (logsig, setLogsig) => {
     onSubmit: (data) => {
       console.log(data);
       dispatch(loginEmailPassword(data));
-      // navigate('/')
+      navigate("/");
     },
   });
 
   const handleGoogle = () => {
     dispatch(loginGoogle());
-    // navigate('/')
+    navigate("/");
   };
 
   return (
     <div>
       <form className="form-group" onSubmit={formik.handleSubmit}>
         <label>Correo electrónico</label>
+       
         <input
           id="inputEmailSignIn"
           type="email"
@@ -42,6 +44,7 @@ const Sigin = (logsig, setLogsig) => {
           onChange={formik.handleChange}
         />
         <label>Contraseña</label>
+        
         <input
           id="inputpasswordSignIn"
           type="password"
@@ -65,6 +68,8 @@ const Sigin = (logsig, setLogsig) => {
           </button>
         </div>
         <br></br>
+        <p>Para pruebas puedes usar tesla@tesla.com | 123456</p>
+        <br></br>
         <div className="google-btn" onClick={handleGoogle}>
           <div className="google-icon-wrapper">
             <img
@@ -78,7 +83,10 @@ const Sigin = (logsig, setLogsig) => {
           </p>
         </div>
         <br></br>
-        <LinkIngreso onClick={() => dispatch(ShowRegistro())}> ¿Deseas crear una cuenta? Haz click aqui</LinkIngreso>
+        <LinkIngreso onClick={() => dispatch(ShowRegistro())}>
+          {" "}
+          ¿Deseas crear una cuenta? Haz click aqui
+        </LinkIngreso>
       </form>
     </div>
   );

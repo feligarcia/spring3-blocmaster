@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Validar Rutas Publicas y Privadas Validar render de <PrivateRoute /> 1`] = `<ListRoutes />`;
+
+exports[`Validar Rutas Publicas y Privadas Validar render de <PublicRoutes /> 1`] = `
+<Navigate
+  to="/*"
+/>
+`;
