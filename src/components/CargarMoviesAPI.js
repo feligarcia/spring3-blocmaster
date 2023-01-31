@@ -4,6 +4,7 @@ import React from "react";
 import { db } from "../firebase/firebaseConfig";
 import { endpoint, urlpopular } from "../helpers/url";
 import { v4 as uuidv4 } from "uuid";
+const { REACT_APP_NAME_MOVIEAPI } = process.env
 
 const CargarMoviesAPI = () => {
   const cargarPeliculas = () => {
@@ -15,7 +16,7 @@ const CargarMoviesAPI = () => {
         let YTBvideo = "";
         await axios
           .get(
-            `https://api.themoviedb.org/3/movie/${movie.id}?api_key=f3afe7eac782f9fdc4afe8c90ea75383&append_to_response=videos`
+            `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${REACT_APP_NAME_MOVIEAPI}&append_to_response=videos`
           )
           .then((resp) => {
             const vid = resp.data.videos.results;

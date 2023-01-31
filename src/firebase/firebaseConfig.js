@@ -2,9 +2,10 @@
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider } from "firebase/auth";
 import {getFirestore} from 'firebase/firestore'
+const { REACT_APP_NAME_FIREBASEAPI } = process.env
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCElbnB9Wl9NGgrUK_BdRXwFlzL6yV9GMs",
+  apiKey: `${REACT_APP_NAME_FIREBASEAPI}`,
   authDomain: "blockmasterf7.firebaseapp.com",
   projectId: "blockmasterf7",
   storageBucket: "blockmasterf7.appspot.com",
