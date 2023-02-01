@@ -8,10 +8,7 @@ import {
   BtnViewLater,
   BtnViewLogo,
 } from "../styleds/BtnView";
-// import { getMovie } from "../functions/getMovie";
-
 import { Carousel } from "react-bootstrap";
-
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Loader";
 import { regisFavASincrono } from "../redux/actions/favActions";
@@ -34,24 +31,20 @@ const VideoYT = styled.iframe`
 `;
 
 const SliderMovies = () => {
-  const { movies } = useSelector((store) => store.app);
+  const movies = useSelector((store) => store.app.movies);
   const [trailers, settrailers] = useState([]);
   const [index, setIndex] = useState(0);
   const dispatch = useDispatch();
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
-  useEffect(() => {
-    Prueba();
-  }, [trailers]);
-
-  const Prueba = async () => {
-    await movies;
-    if (trailers.length < 3) {
-      settrailers(movies.slice(0, 4));
+  useEffect(() => {    
+    const gettrailers = async () =>{
+      await movies
+      settrailers(movies.slice(0, 4))
     }
-  };
-
+    gettrailers()   
+  }, [movies]);
   const getUserLocalST = JSON.parse(localStorage.getItem("userBMApp"));
 
   return (

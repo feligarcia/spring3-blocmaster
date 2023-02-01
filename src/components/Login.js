@@ -3,7 +3,6 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { createUserActionAsincrono } from "../redux/actions/createUserAction";
 import { imgUpload } from "../functions/imgUpload";
-
 import "../styleds/GoogleBtn.css";
 import styled from "styled-components";
 import { ShowLogin } from "../redux/actions/showRegistro";

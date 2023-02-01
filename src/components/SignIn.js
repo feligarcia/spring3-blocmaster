@@ -17,7 +17,6 @@ const Sigin = () => {
       password: "",
     },
     onSubmit: (data) => {
-      console.log(data);
       dispatch(loginEmailPassword(data));
       navigate("/");
     },

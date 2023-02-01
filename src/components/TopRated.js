@@ -18,32 +18,25 @@ import { ImgMovienoFound } from "../styleds/MoviesGrid";
 
 const TopRated = () => {
   const [itemsload, setitemsload] = useState(15);
+  
   useEffect(() => {
+    const handleScroll= () => {
+      if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight){
+        return
+      }
+      console.log("Cargando mas items")
+      setitemsload(itemsload + 15)
+    }
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    }
   }, [itemsload]);
 
-  const { movies } = useSelector((store) => store.app);
+  const movies = useSelector((store) => store.app.movies);
   const { search } = useSelector((store) => store.app);
   const { filtroMovie } = useSelector((store) => store.app);
-
-  const handleScroll= async ()=> {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-      document.documentElement.offsetHeight
-    )
-      return;
-    console.log("Cargando mas items");
-    
-    
-    if (itemsload < movies?.length) {
-      setitemsload(itemsload + 15);
-      console.log('otros 15')
-    }
-  }
-
- 
-
+  
   const filterMovie = (name, movies) => {
     name = name?.toLocaleLowerCase();
     return movies.filter((movie) =>
@@ -69,10 +62,12 @@ switch (filtroMovie) {
 
     case 'All':
       hText = 'Todas las peliculas'
-      movieswithFilter = movies?.sort()
+      movieswithFilter = movies?.sort(((a, b) => 0.5 - Math.random()))
     break;
 
-  
+    default:
+      hText = 'Todas las peliculas'
+      movieswithFilter = movies?.sort(((a, b) => 0.5 - Math.random())) 
 }
 
   const moviesInitialZero = movieswithFilter.slice(0, itemsload);
@@ -96,8 +91,6 @@ switch (filtroMovie) {
   } else if (peliculasFiltradas.length === 0) {
     return <Loader />;
   }
-
-  console.log(itemsload);
   return (
     <>
       <h1>{hText}</h1>

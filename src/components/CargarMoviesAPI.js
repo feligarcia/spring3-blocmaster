@@ -2,7 +2,7 @@ import axios from "axios";
 import { addDoc, collection } from "firebase/firestore";
 import React from "react";
 import { db } from "../firebase/firebaseConfig";
-import { endpoint, urlpopular } from "../helpers/url";
+import { urlpopular } from "../helpers/url";
 import { v4 as uuidv4 } from "uuid";
 const { REACT_APP_NAME_MOVIEAPI } = process.env
 
@@ -10,8 +10,6 @@ const CargarMoviesAPI = () => {
   const cargarPeliculas = () => {
     axios.get(urlpopular + `&page=4`).then((response) => {
       const Movies = response.data.results;
-
-      console.log(Movies);
       Movies.forEach(async (movie) => {
         let YTBvideo = "";
         await axios
@@ -37,7 +35,6 @@ const CargarMoviesAPI = () => {
           trailer:YTBvideo
         };
         addDoc(collection(db, "moviesDB"), autoMovie).then((resp) => {});
-        console.log(autoMovie);
       });
     });
   };

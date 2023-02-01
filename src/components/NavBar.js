@@ -111,16 +111,11 @@ const NavBar = () => {
     initialValues: {
       search: "",
     },
-    onSubmit: (data) => {
-    
-      dispatch(actionSearch(data.search))
-     
+    onSubmit: (data) => {    
+      dispatch(actionSearch(data.search))     
     },
   });
    dispatch(actionSearch(formik.values.search))
-
- 
-
 
   const handleLogout = () => {
     dispatch(ShowLogin());
@@ -130,10 +125,18 @@ const NavBar = () => {
   return (
     <NavDiv>
       <LogoNav src={Logo} onClick={() => navigate("/")}></LogoNav>
-
-      <LinkTitle onClick={()=>dispatch(filtroMovieApp('All'))}>Todas</LinkTitle>
-      <LinkTitle onClick={()=>dispatch(filtroMovieApp('Top'))} >Más valoradas</LinkTitle>
-      <LinkTitle onClick={()=>dispatch(filtroMovieApp('noTop'))}>Menos valoradas</LinkTitle>
+      <LinkTitle onClick={()=>{
+        dispatch(filtroMovieApp('All'))
+        navigate("/")
+        }}>Todas</LinkTitle>
+      <LinkTitle onClick={()=>{
+        dispatch(filtroMovieApp('Top'))
+        navigate("/")
+        }}>Más valoradas</LinkTitle>
+      <LinkTitle onClick={()=>{
+        dispatch(filtroMovieApp('noTop'))
+        navigate("/")
+        }}>Menos valoradas</LinkTitle>
       <DivSearch>
         <FormSear onSubmit={formik.handleSubmit}>
           <InputSearch
@@ -152,7 +155,7 @@ const NavBar = () => {
       </Pubicacion>
       <Rowdiv>
         <AvatarImg
-          src={getUserLocalST ?getUserLocalST.photoURL : Avatar}
+          src={getUserLocalST ? getUserLocalST.photoURL : Avatar}
           onClick={() => navigate("/personal")}
         />
         <LogoutIcon onClick={() => handleLogout()} />

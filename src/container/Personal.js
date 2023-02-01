@@ -5,7 +5,6 @@ import NavBar from "../components/NavBar";
 import { ProfileImg } from "../styleds/LoginGrid";
 import { ImgDelete, ImgEdit } from "../styleds/MoviesGrid";
 import Avatar from "../data/images/avatar.png";
-import { Button } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
 
 import { borrarFavASincro, listFavASincrono } from "../redux/actions/favActions";
@@ -68,7 +67,7 @@ const DivBtns = styled.div`
 const Personal = () => {
   const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
-    const { favMovies } = useSelector((store) => store.favs);
+  const { favMovies } = useSelector((store) => store.favs);
   const location = useSelector((store) => store.user.location);
   const getUserLocalST = JSON.parse(localStorage.getItem('userBMApp'))
   const {displayName, email, photoURL} = getUserLocalST
@@ -79,7 +78,7 @@ const Personal = () => {
 
   useEffect(() => {
     dispatch(listFavASincrono(email));
-  }, []);
+  }, [email,dispatch]);
 
   return (
     <LayaoutHome>

@@ -1,10 +1,8 @@
 import axios from 'axios';
-const { REACT_APP_NAME_MAPSAPI } = process.env
 import {types} from '../types/types.js'
+const { REACT_APP_NAME_MAPSAPI } = process.env
 
 export const locationAsincrono = () => {
-
-
   return(dispatch) => {
     if (navigator.geolocation) { //check if geolocation is available
       navigator.geolocation.getCurrentPosition(function(position){

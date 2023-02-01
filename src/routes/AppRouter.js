@@ -7,8 +7,6 @@ import { ListRoutes } from "./ListRoutes";
 import { PrivateRoute } from "./PrivateRoutes";
 import Loader from "../components/Loader";
 
-// import CargarMoviesAPI from "../components/CargarMoviesAPI";
-
 function AppRouter() {
   const [checking, setChecking] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
